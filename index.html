@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitHub Pages + Flask</title>
+</head>
+<body>
+
+    <input id="input1" placeholder="First text">
+    <br><br>
+    <input id="input2" placeholder="Second text">
+    <br><br>
+    <button onclick="sendData()">Send</button>
+
+    <p id="result"></p>
+
+    <script>
+        const BACKEND_URL = "https://abc123.ngrok-free.app/send_data";
+
+        function sendData() {
+            fetch(BACKEND_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    text1: document.getElementById("input1").value,
+                    text2: document.getElementById("input2").value
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("result").innerText =
+                    "Response: " + data.response;
+            })
+            .catch(err => console.error(err));
+        }
+    </script>
+
+</body>
+</html>
