@@ -4,10 +4,14 @@
     <title>GitHub Pages + Render</title>
 </head>
 <body>
-    <h3>Username:</h3><input id="username" placeholder="Username">
-    <br>
-    <h3>Password:</h3><input id="password" placeholder="password",type=password>
 
+    <h3>Username:</h3>
+    <input id="username" placeholder="Username">
+
+    <h3>Password:</h3>
+    <input id="password" type="password" placeholder="Password">
+
+    <br><br>
     <button onclick="sendData()">Send</button>
 
     <p id="result"></p>
@@ -23,16 +27,18 @@
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    username: username.value,
-                    password: password.value
+                    username: document.getElementById("username").value,
+                    password: document.getElementById("password").value
                 })
             })
             .then(res => res.json())
             .then(data => {
-                result.innerText = "Response: " + data.response;
+                document.getElementById("result").innerText =
+                    "Response: " + data.response;
             })
-            .catch(err => {
-                result.innerText = "Backend waking up...";
+            .catch(() => {
+                document.getElementById("result").innerText =
+                    "Backend waking up...";
             });
         }
     </script>
