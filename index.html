@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>GitHub Pages + Flask</title>
+    <title>GitHub Pages + Render</title>
 </head>
 <body>
 
@@ -9,12 +9,14 @@
     <br><br>
     <input id="input2" placeholder="Second text">
     <br><br>
+
     <button onclick="sendData()">Send</button>
 
     <p id="result"></p>
 
     <script>
-        const BACKEND_URL = "https://chaetophorous-lanell-unpetalled.ngrok-free.dev";
+        const BACKEND_URL =
+          "https://private-back.onrender.com";
 
         function sendData() {
             fetch(BACKEND_URL, {
@@ -23,16 +25,17 @@
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    text1: document.getElementById("input1").value,
-                    text2: document.getElementById("input2").value
+                    text1: input1.value,
+                    text2: input2.value
                 })
             })
             .then(res => res.json())
             .then(data => {
-                document.getElementById("result").innerText =
-                    "Response: " + data.response;
+                result.innerText = "Response: " + data.response;
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                result.innerText = "Backend waking up...";
+            });
         }
     </script>
 
