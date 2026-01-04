@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>GitHub Pages + Render</title>
+    <title>Template</title>
 </head>
 <body>
 
@@ -15,7 +15,7 @@
     <button onclick="sendData()">Send</button>
 
     <p id="result"></p>
-
+    
     <script>
         const BACKEND_URL =
           "https://private-back.onrender.com/send_data";
@@ -34,7 +34,7 @@
             .then(res => res.json())
             .then(data => {
                 document.getElementById("result").innerText =
-                    "Response: " + data.response;
+                    data.response;
             })
             .catch(() => {
                 document.getElementById("result").innerText =
